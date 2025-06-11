@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeNest - Collaborative IDE</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Monaco Editor -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.36.1/min/vs/loader.min.js"></script>
+    <!-- Socket.IO for real-time collaboration -->
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+</head>
+<body>
+    <div class="main-ui-container">
+        <aside class="sidebar-ui">
+            <div class="sidebar-header">
+                <button class="sidebar-menu-btn"><i class="fas fa-bars"></i></button>
+                <span class="sidebar-title">CodeNest</span>
+            </div>
+            <div class="sidebar-content">
+                <h2>Your Rooms <button id="add-room-btn"><i class="fas fa-plus"></i></button></h2>
+                <ul id="room-list" class="room-list"></ul>
+            </div>
+        </aside>
+        <main class="main-content-ui">
+            <div class="main-header">
+                <span></span>
+                <button class="theme-toggle"><i class="fas fa-sun"></i></button>
+            </div>
+            <div class="rooms-table-container">
+                <table class="rooms-table">
+                    <thead>
+                        <tr>
+                            <th>Room</th>
+                            <th>Code</th>
+                            <th>Created</th>
+                        </tr>
+                    </thead>
+                    <tbody id="rooms-table-body">
+                        <!-- Room rows will be injected here -->
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <!-- Create Room Modal -->
+    <div id="create-room-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Create room</h2>
+                <button class="close-modal" id="close-modal-btn"><i class="fas fa-times"></i></button>
+            </div>
+            <form id="create-room-form">
+                <label>Name
+                    <input type="text" id="room-name" maxlength="60" required />
+                </label>
+                <label>Link
+                    <input type="text" id="room-link" maxlength="30" readonly />
+                </label>
+                <label>Language
+                    <select id="room-language">
+                        <option>Python</option>
+                        <option>JavaScript</option>
+                        <option>Java</option>
+                        <option>C++</option>
+                        <option>HTML</option>
+                        <option>CSS</option>
+                    </select>
+                </label>
+                <label>Groups
+                    <input type="number" id="room-groups" min="1" value="1" />
+                </label>
+                <label>Starter Code
+                    <textarea id="room-starter-code" rows="4" maxlength="2500">Add starter code here</textarea>
+                </label>
+                <div class="modal-toggles">
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="lock-room" />
+                        <span class="slider"></span>
+                        Lock Room
+                    </label>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="runnable-code" />
+                        <span class="slider"></span>
+                        Runnable Code
+                    </label>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="hints" />
+                        <span class="slider"></span>
+                        Hints
+                    </label>
+                </div>
+                <button type="submit" class="save-btn">Save</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/config.js"></script>
+    <script src="js/editor.js"></script>
+    <script src="js/collaboration.js"></script>
+    <script src="js/terminal.js"></script>
+    <script src="js/file-manager.js"></script>
+    <script src="js/git-integration.js"></script>
+    <script src="js/ai-assistant.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html> 
